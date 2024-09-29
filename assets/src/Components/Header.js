@@ -52,19 +52,16 @@ const TabNavigation = ( {
 			return;
 		}
 
-		let menu = document.getElementById( 'toplevel_page_neve-welcome' );
-		if ( ! menu ) {
-			menu = document.getElementById( 'menu-appearance' );
-		}
-		const tiobMenu = document.getElementById( 'toplevel_page_tiob-plugin' );
+		let	menu = document.getElementById( 'menu-appearance' );
+
+		console.log(menu);
 
 		const lookupHashList = [ '#pageTemplates', '#settings' ];
 		const itemHashList = lookupHashList.map( ( itemHash ) => {
 			return {
 				hash: itemHash,
 				item: menu.querySelector( `a[href="themes.php?page=tiob-starter-sites${ itemHash }"]` )
-					|| menu.querySelector( `a[href="admin.php?page=tiob-starter-sites${ itemHash }"]` )
-					|| tiobMenu.querySelector( `a[href="admin.php?page=tiob-plugin${ itemHash }"]` ),
+					|| menu.querySelector( `a[href="admin.php?page=tiob-starter-sites${ itemHash }"]` ),
 			}
 		} );
 

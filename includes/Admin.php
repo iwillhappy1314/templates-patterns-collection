@@ -422,30 +422,7 @@ class Admin {
 	 * @return bool|void
 	 */
 	public function register() {
-		$icon        = 'data:image/svg+xml;base64,PHN2ZwogICAgICAgIHdpZHRoPSIxMDAiCiAgICAgICAgaGVpZ2h0PSIxMDAiCiAgICAgICAgdmlld0JveD0iMCAwIDEwMCAxMDAiCiAgICAgICAgZmlsbD0iI2YwZjBmMSIKICAgICAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCj4KICAgIDxwYXRoCiAgICAgICAgICAgIGQ9Ik05NS4wMjY0IDEwMEg0Ljk3MzU2QzIuMjI3OTcgMTAwIDAgOTcuNzcyIDAgOTUuMDI2NFY0Ljk3MzU2QzAgMi4yMjc5NyAyLjIyNzk3IDAgNC45NzM1NiAwSDk1LjAyNjRDOTcuNzcyIDAgMTAwIDIuMjI3OTcgMTAwIDQuOTczNTZWOTUuMDI2NEMxMDAgOTcuNzcyIDk3Ljc3MiAxMDAgOTUuMDI2NCAxMDBaIE04Mi42OTQxIDg2Ljc0NDhWMzAuODIwNVYxOC40NjUzSDcwLjM1MDJIMTQuNDE0NkwyNi43NTg0IDMwLjgyMDVINzAuMzUwMlY3NC40MDFMODIuNjk0MSA4Ni43NDQ4WiBNNDIuMjQxNiA1OC45MjkxTDQyLjI1MjggNzEuMTgzTDUzLjIzNTIgODIuMTY1M0w1My4xOTAyIDQ3Ljk4MDZMMTguOTk0MSA0Ny45MzU1TDI5Ljk3NjUgNTguOTA2Nkw0Mi4yNDE2IDU4LjkyOTFaIgogICAgICAgICAgICBmaWxsPSIjZjBmMGYxIgogICAgLz4KPC9zdmc+Cg==';
-		$priority    = 61;  // The position of the menu item, 60 is the position of the Appearance menu.
 		$plugin_page = 'tiob-plugin';
-
-		$tpc_menu_page_data = array(
-			'page_title' => __( 'Templates Cloud', 'templates-patterns-collection' ),
-			'menu_title' => __( 'Templates Cloud', 'templates-patterns-collection' ),
-			'capability' => 'manage_options',
-			'menu_slug'  => $plugin_page,
-			'callback'   => array(
-				$this,
-				'render_starter_sites',
-			),
-		);
-
-		add_menu_page(
-			$tpc_menu_page_data['page_title'],
-			$tpc_menu_page_data['menu_title'],
-			$tpc_menu_page_data['capability'],
-			$tpc_menu_page_data['menu_slug'],
-			$tpc_menu_page_data['callback'],
-			$icon,
-			$priority
-		);
 
 		if ( $this->is_library_disabled() && $this->is_starter_sites_disabled() ) {
 			return false;
