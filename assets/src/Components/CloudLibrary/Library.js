@@ -268,7 +268,7 @@ const Library = ( {
 		library[ type ] &&
 		library[ type ].find( ( item ) => previewUrl === item.link );
 	const wrapClasses = classnames( 'cloud-items', {
-		'is-grid': isGrid || ( ! userStatus && ! isGeneral ),
+		'is-grid': isGrid,
 		'is-dummy': ( ! userStatus && ! isGeneral ) || themeData !== false,
 	} );
 
