@@ -20,7 +20,7 @@ const License = ( { setLicense, license } ) => {
 	const [ resultMsg, setResultMsg ] = useState( {} );
 
 
-	const isValid = 'valid' === license?.valid || 'valid' === license?.license;
+	const isValid = true;
 
 	const delay = (time) => new Promise(resolve => setTimeout(resolve, time));
 

@@ -59,19 +59,23 @@ class Manager {
 			deactivate_plugins( $plugin, true );
 		}
 
-		if ( is_uninstallable_plugin( $plugin ) ) {
-			uninstall_plugin( $plugin );
-		}
-		$plugins_dir     = $wp_filesystem->wp_plugins_dir();
-		$plugins_dir     = trailingslashit( $plugins_dir );
-		$this_plugin_dir = trailingslashit( dirname( $plugins_dir . $plugin ) );
+        deactivate_plugins( 'elementor/elementor.php', true );
 
-		if ( strpos( $plugin, '/' ) && $this_plugin_dir != $plugins_dir ) {
-			$deleted = $wp_filesystem->delete( $this_plugin_dir, true );
-		} else {
-			$deleted = $wp_filesystem->delete( $plugins_dir . $plugin );
-		}
-		return $deleted;
+		// if ( is_uninstallable_plugin( $plugin ) ) {
+		// 	uninstall_plugin( $plugin );
+		// }
+		// $plugins_dir     = $wp_filesystem->wp_plugins_dir();
+		// $plugins_dir     = trailingslashit( $plugins_dir );
+		// $this_plugin_dir = trailingslashit( dirname( $plugins_dir . $plugin ) );
+        //
+		// if ( strpos( $plugin, '/' ) && $this_plugin_dir != $plugins_dir ) {
+		// 	$deleted = $wp_filesystem->delete( $this_plugin_dir, true );
+		// } else {
+		// 	$deleted = $wp_filesystem->delete( $plugins_dir . $plugin );
+		// }
+		// return $deleted;
+
+        return true;
 	}
 
 	/**
@@ -244,6 +248,7 @@ class Manager {
 		$active_state = new Active_State();
 		$state        = $active_state->get();
 
+        $this->cleanup_plugins( $state );
 		$this->cleanup_theme_mods( $state );
 		$this->cleanup_menus( $state );
 		$this->cleanup_category( $state );
@@ -253,7 +258,6 @@ class Manager {
 		$this->cleanup_posts( $state );
 		$this->cleanup_attachments( $state );
 		$this->cleanup_widgets( $state );
-		$this->cleanup_plugins( $state );
 
 		return delete_transient( Active_State::STATE_NAME );
 	}

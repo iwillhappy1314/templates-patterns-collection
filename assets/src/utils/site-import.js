@@ -108,7 +108,7 @@ export const importFseTemplate = async ( data ) => {
 };
 
 export const installTheme = (
-	slug = 'neve',
+	slug = 'kadence',
 	callbackSuccess,
 	callbackError
 ) => {

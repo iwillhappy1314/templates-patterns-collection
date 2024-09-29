@@ -68,12 +68,13 @@ class Widgets_Importer {
 	 * @return \WP_Error|void
 	 */
 	public function actually_import( $data ) {
-		global $wp_registered_sidebars;
+		global $wp_registered_sidebars, $wpdb;
 		if ( empty( $data ) || ! is_array( $data ) ) {
 			return new WP_Error( 'ti__ob_widget_err_1' );
 		}
 
 		$available_widgets = $this->available_widgets();
+        $widgets_mapping   = get_option('widgets_mapping');
 
 		// Get previous value to reset on cleanup
 		do_action(
@@ -121,6 +122,13 @@ class Widgets_Importer {
 
 				// Convert multidimensional objects to multidimensional arrays
 				$widget = json_decode( wp_json_encode( $widget ), true );
+
+                // Map Widget nav menu
+                if (array_key_exists('nav_menu', $widget) && ! empty($widget[ 'nav_menu' ])) {
+                    $menu_term_id = $wpdb->get_row("SELECT * FROM `{$wpdb->prefix}terms` WHERE `slug` = '$widgets_mapping[$widget_instance_id]'")->term_id;
+
+                    $widget[ 'nav_menu' ] = $menu_term_id;
+                }
 
 				// Does widget with identical settings already exist in same sidebar?
 				if ( ! $fail && isset( $widget_instances[ $id_base ] ) ) {

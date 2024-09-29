@@ -18,9 +18,9 @@ const Header = ( { closeModal, getOrder, getSearchQuery } ) => {
 		// patterns: __( 'Patterns' ),
 	};
 
-	if ( parseInt( tiTpc.tier ) === 3 ) {
+	//if ( parseInt( tiTpc.tier ) === 3 ) {
 		TABS.library = __( 'My Library' );
-	}
+	//}
 
 	const isFetching = useSelect( ( select ) =>
 		select( 'tpc/block-editor' ).isFetching()

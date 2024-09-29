@@ -55,7 +55,7 @@ class Admin {
 	private $google_fonts = array();
 
 	public static function get_templates_cloud_endpoint() {
-		return 'https://' . self::API . '/templates-cloud/';
+		return 'https://sites.wpcio.com/wp-json/template-cloud/v1/';
 	}
 
 	/**
@@ -367,24 +367,21 @@ class Admin {
 	 */
 	private function add_theme_page_for_tiob( $page_data, $offset = 2 ) {
 
-		if ( $this->neve_theme_has_support( 'theme_dedicated_menu' ) ) {
-			global $submenu;
+        global $submenu;
 
-			$theme_page = 'neve-welcome';
-			$capability = 'activate_plugins';
-			add_submenu_page(
-				$theme_page,
-				$page_data['page_title'],
-				$page_data['page_title'],
-				$capability,
-				$page_data['menu_slug'],
-				$page_data['callback']
-			);
+        $theme_page = 'themes.php';
+        $capability = 'activate_plugins';
+        add_submenu_page(
+            $theme_page,
+            $page_data['page_title'],
+            $page_data['page_title'],
+            $capability,
+            $page_data['menu_slug'],
+            $page_data['callback']
+        );
 
-			$item = array_pop( $submenu[ $theme_page ] );
-			array_splice( $submenu[ $theme_page ], $offset, 0, array( $item ) );
-			return;
-		}
+        $item = array_pop( $submenu[ $theme_page ] );
+        array_splice( $submenu[ $theme_page ], $offset, 0, array( $item ) );
 
 		// When using the new menu location we will not register items on the theme page anymore.
 		if ( $this->tiob_has_support( 'new_menu' ) ) {
@@ -491,6 +488,7 @@ class Admin {
 			'menu_slug'   => $plugin_page,
 			'callback'    => $tpc_menu_page_data['callback'],
 		);
+
 		$settings_data = array(
 			'parent_slug' => $plugin_page,
 			'page_title'  => __( 'Settings', 'templates-patterns-collection' ),
@@ -566,10 +564,7 @@ class Admin {
 	 * @return bool
 	 */
 	private function is_agency_plan() {
-		$plan = $this->neve_license_plan();
-		$plan = License::get_license_tier( $plan );
-
-		return $plan === 3;
+		return true;
 	}
 
 	/**
@@ -797,12 +792,7 @@ class Admin {
 	 */
 	private function get_upsell_notifications() {
 
-		$notifications['upsell_1'] = array(
-			// We use these strings in Neve already so lets reuse the translations here.
-			'text' => esc_html__( 'Purchase the Business plan or higher to get instant access to all Premium Starter Site Templates — including Expert Sites — and much more.', 'neve' ), //phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
-			'cta'  => __( 'Get Neve Business', 'neve' ), //phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
-			'url'  => tsdk_utmify( 'https://themeisle.com/themes/neve/upgrade/', '<builder_name>notice', 'nevedashboard' ),
-		);
+		$notifications['upsell_1'] = [];
 
 		return $notifications;
 
@@ -812,14 +802,14 @@ class Admin {
 	 * Gets theme action.
 	 */
 	private function get_theme_action() {
-		if ( defined( 'NEVE_VERSION' ) ) {
+		if ( defined( 'KADENCE_VERSION' ) ) {
 			return false;
 		}
 
 		$themes = wp_get_themes();
 		foreach ( $themes as $theme_slug => $args ) {
 			$theme = wp_get_theme( $theme_slug );
-			if ( $theme->get( 'TextDomain' ) === 'neve' ) {
+			if ( $theme->get( 'TextDomain' ) === 'kadence' ) {
 				return array(
 					'action' => 'activate',
 					'slug'   => $theme_slug,
@@ -830,7 +820,7 @@ class Admin {
 
 		return array(
 			'action' => 'install',
-			'slug'   => 'neve',
+			'slug'   => 'kadence',
 			'nonce'  => wp_create_nonce( 'switch-theme_neve' ),
 		);
 	}

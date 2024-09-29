@@ -133,17 +133,6 @@ const DemoSiteTemplatesImport = ( {
 					<div className="text">
 						<h1>
 							{ title || '' }
-							{ upsell && (
-								<span className="pro-badge">
-									<Icon icon="lock" />
-									<span>
-										{ __(
-											'Premium',
-											'templates-patterns-collection'
-										) }
-									</span>
-								</span>
-							) }
 						</h1>
 						<p className="description">
 							{ __(
@@ -153,28 +142,24 @@ const DemoSiteTemplatesImport = ( {
 					</div>
 
 					<div className="actions">
-						{ ! upsell && (
-							<>
-								<Button isSecondary onClick={ launchImport }>
-									{ __( 'Import Starter Site', 'templates-patterns-collection' ) }
-								</Button>
-								<Button
-									isPrimary
-									disabled={ templates.length < 1 }
-									onClick={ handleBulk }
-								>
-									{ __( 'Import All Pages', 'templates-patterns-collection' ) }
-								</Button>
-							</>
-						) }
-						{ upsell && (
-							<Button
-								href={ utmOutboundLink || tiobDash.upgradeURL }
-								isSecondary
-							>
-								{ __( 'Upgrade', 'templates-patterns-collection' ) }
+						<>
+							<Button isSecondary onClick={ launchImport }>
+								{ __( 'Import Starter Site', 'templates-patterns-collection' ) }
 							</Button>
-						) }
+							<Button
+								isPrimary
+								disabled={ templates.length < 1 }
+								onClick={ handleBulk }
+							>
+								{ __( 'Import All Pages', 'templates-patterns-collection' ) }
+							</Button>
+						</>
+						<Button
+							href={ utmOutboundLink || tiobDash.upgradeURL }
+							isSecondary
+						>
+							{ __( 'Upgrade', 'templates-patterns-collection' ) }
+						</Button>
 					</div>
 				</div>
 			</div>
@@ -213,37 +198,33 @@ const DemoSiteTemplatesImport = ( {
 					}
 					rightButtons={
 						<>
-							{ ! upsell && (
-								<>
-									<Button
-										isSecondary
-										onClick={ launchImport }
-									>
-										{ __( 'Import Starter Site', 'templates-patterns-collection' ) }
-									</Button>
-									<Button
-										isPrimary
-										disabled={ templates.length < 1 }
-										onClick={ () =>
-											handleSingleImport(
-												currentPreviewTemplate
-											)
-										}
-									>
-										{ __( 'Import Page', 'templates-patterns-collection' ) }
-									</Button>
-								</>
-							) }
-							{ upsell && (
+							<>
 								<Button
-									href={
-										utmOutboundLink || tiobDash.upgradeURL
-									}
 									isSecondary
+									onClick={ launchImport }
 								>
-									{ __( 'Upgrade', 'templates-patterns-collection' ) }
+									{ __( 'Import Starter Site', 'templates-patterns-collection' ) }
 								</Button>
-							) }
+								<Button
+									isPrimary
+									disabled={ templates.length < 1 }
+									onClick={ () =>
+										handleSingleImport(
+											currentPreviewTemplate
+										)
+									}
+								>
+									{ __( 'Import Page', 'templates-patterns-collection' ) }
+								</Button>
+							</>
+							<Button
+								href={
+									utmOutboundLink || tiobDash.upgradeURL
+								}
+								isSecondary
+							>
+								{ __( 'Upgrade', 'templates-patterns-collection' ) }
+							</Button>
 						</>
 					}
 				/>

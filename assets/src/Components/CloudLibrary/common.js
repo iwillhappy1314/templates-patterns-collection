@@ -157,7 +157,8 @@ export const fetchBulkData = async ( templates ) => {
 		{
 			url: `${ tiobDash.endpoint }templates/bulk-import`,
 			query: {
-				templates,
+				templates: templates[0].template_id,
+				template_site_slug: templates[0].template_site_slug,
 				cache: localStorage.getItem( 'tpcCacheBuster' ),
 				...tiobDash.params,
 			},

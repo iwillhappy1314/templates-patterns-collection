@@ -15,7 +15,7 @@ class Sites_Listing {
 	/**
 	 * Sites Listing API URL
 	 */
-	const API = 'https://api.themeisle.com/sites/wp-json/demosites-api/sites';
+	const API = 'https://sites.wpcio.com/wp-json/template-cloud/v1/sites';
 
 	/**
 	 * Key of transient where we save the sites list.

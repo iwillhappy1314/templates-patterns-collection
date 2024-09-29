@@ -40,7 +40,7 @@ const InstallModal = ( {
 	const handleInstall = () => {
 		setInstalling( 'installing' );
 		wp.updates.installTheme( {
-			slug: 'neve',
+			slug: 'kadence',
 			success: () => {
 				setThemeAction( { ...themeData, action: 'activate' } );
 				handleActivate();

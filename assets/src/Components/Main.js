@@ -40,7 +40,7 @@ const Onboarding = ( {
 							) ) }
 						{ 'library' === currentTab && <Library /> }
 						{ 'pageTemplates' === currentTab && (
-							<Library isGeneral={ true } />
+							<Library isGeneral={ false } />
 						) }
 						{ 'settings' === currentTab && <Settings /> }
 					</div>

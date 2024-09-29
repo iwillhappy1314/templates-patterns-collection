@@ -49,7 +49,7 @@ const ImportTemplatesModal = ( {
 				}
 			);
 		} else {
-			fetchBulkData( templatesData.map( ( i ) => i.template_id ) ).then(
+			fetchBulkData( templatesData.map( ( i ) => ({template_id: i.template_id, template_site_slug: i.template_site_slug}) ) ).then(
 				( r ) => {
 					if ( ! r.success ) {
 						if ( r.message ) {
@@ -204,7 +204,7 @@ const ImportTemplatesModal = ( {
 
 		if ( themeData.action === 'install' ) {
 			installTheme(
-				'neve',
+				'kadence',
 				() => {
 					activateTheme(
 						themeData,

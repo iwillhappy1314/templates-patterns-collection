@@ -10,8 +10,7 @@ const PreviewFrame = ( {
 	previewUrl,
 } ) => {
 	const url = stringifyUrl( {
-		url: previewUrl,
-		query: { tpcpreview: 'yes' },
+		url: previewUrl
 	} );
 
 	const iframeTitle = title || __( 'Preview' );

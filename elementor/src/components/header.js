@@ -110,19 +110,17 @@ const Header = ( {
 							{ window.tiTpc.library.tabs.templates }
 						</Button>
 
-						{ parseInt( window.tiTpc.tier ) === 3 && (
-							<Button
-								className={ classnames(
-									'ti-tpc-template-library-menu-item',
-									{
-										'is-active': 'library' === currentTab,
-									}
-								) }
-								onClick={ () => updateCurrentTab( 'library' ) }
-							>
-								{ window.tiTpc.library.tabs.library }
-							</Button>
-						) }
+						<Button
+							className={ classnames(
+								'ti-tpc-template-library-menu-item',
+								{
+									'is-active': 'library' === currentTab,
+								}
+							) }
+							onClick={ () => updateCurrentTab( 'library' ) }
+						>
+							{ window.tiTpc.library.tabs.library }
+						</Button>
 					</div>
 				) }
 
@@ -180,8 +178,7 @@ const Header = ( {
 
 								{ [ 'wp-post', 'wp-page' ].includes(
 									elementor.config.document.type
-								) &&
-									parseInt( window.tiTpc.tier ) === 3 && (
+								) && (
 									<Button
 										className="ti-tpc-templates-modal__header__item"
 										onClick={ () =>

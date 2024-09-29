@@ -60,15 +60,13 @@ const StarterSiteCard = ( {
 					<Button isSecondary onClick={ launchPreview }>
 						{ __( 'Preview', 'templates-patterns-collection' ) }
 					</Button>
-					{ ! upsell && (
-						<Button
-							isPrimary
-							className="import"
-							onClick={ launchImport }
-						>
-							{ __( 'Import', 'templates-patterns-collection' ) }
-						</Button>
-					) }
+					<Button
+						isPrimary
+						className="import"
+						onClick={ launchImport }
+					>
+						{ __( 'Import', 'templates-patterns-collection' ) }
+					</Button>
 					{ ! has_templates && upsell && (
 						<Button
 							isLink

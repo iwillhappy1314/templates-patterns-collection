@@ -53,7 +53,7 @@ const ImportModal = ( {
 		widgets: true,
 		cleanup: false,
 		performanceAddon: true,
-		hyveLite: true,
+		hyveLite: false,
 		theme_install: themeData !== false,
 	} );
 	const site = tiobDash.onboarding.homeUrl || '';
@@ -96,6 +96,7 @@ const ImportModal = ( {
 			`${ trailingSlashIt( fetchAddress ) }wp-json/ti-demo-data/data`
 		);
 		url.searchParams.append( 'license', license ? license.key : 'free' );
+		url.searchParams.append( 'theme', siteData.theme ? siteData.theme : 'kadence' );
 		url.searchParams.append( 'ti_downloads', 'yes' );
 		get( url, true, false )
 			.then( ( response ) => {
@@ -178,7 +179,7 @@ const ImportModal = ( {
 		const rowClass = classnames( 'option-row', 'active' );
 		const { icon, title, tooltip } = {
 			icon: 'admin-appearance',
-			title: __( 'Neve', 'templates-patterns-collection' ),
+			title: __( 'Kadence', 'templates-patterns-collection' ),
 			tooltip: __(
 				'In order to import the starter site, Neve theme has to be installed and activated.',
 				'templates-patterns-collection'

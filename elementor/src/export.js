@@ -12,7 +12,6 @@ import {
 } from './data/templates-cloud/index.js';
 import { setPostModel } from './data/utils';
 
-if ( parseInt( window.tiTpc.tier ) === 3 ) {
 	elementor.on( 'document:loaded', () => {
 		( async () => {
 			if (
@@ -177,4 +176,4 @@ if ( parseInt( window.tiTpc.tier ) === 3 ) {
 			addExportMenuItem
 		);
 	} );
-}
+

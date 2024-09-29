@@ -166,12 +166,6 @@ const Filters = ( {
 							showCount={ showCount }
 						/>
 					) }
-					{ ! tiobDash.isValidLicense && (
-						<Notification
-							data={ tiobDash.upsellNotifications.upsell_1 }
-							editor={ editor }
-						/>
-					) }
 				</div>
 			</VizSensor>
 		</>

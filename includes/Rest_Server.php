@@ -404,7 +404,7 @@ class Rest_Server {
 					'page_template' => $page_template,
 					'meta_input'    => array_merge(
 						array(
-							'_elementor_data'          => $template['content'],
+							'_elementor_data'          => wp_slash(json_encode($template[ 'content' ])),
 							'_elementor_template_type' => 'wp-page',
 							'_elementor_edit_mode'     => 'builder',
 						),
@@ -413,6 +413,23 @@ class Rest_Server {
 				)
 			);
 		}
+
+
+        if ('gutenberg' == $template[ 'template_type' ]) {
+
+            // 插入古滕堡编辑器内容
+            return wp_insert_post(
+                [
+                    'post_title'    => wp_strip_all_tags($template[ 'template_name' ]),
+                    'post_content'  => wp_kses_post($template[ 'content' ]),
+                    'post_status'   => 'publish',
+                    'post_type'     => 'page',
+                    'page_template' => $page_template,
+                    'meta_input'    => isset($template[ 'meta' ]) ? $template[ 'meta' ] : [],
+                ]
+            );
+
+        }
 
 		return wp_insert_post(
 			array(
