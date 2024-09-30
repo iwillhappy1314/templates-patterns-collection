@@ -53,6 +53,8 @@ class Plugin_Importer {
 		'recipe-card-blocks-by-wpzoom'     => 'wpzoom-recipe-card.php',
 		'restrict-content'                 => 'restrictcontent.php',
 		'pods'                             => 'init.php',
+        'smtp-mailer'                      => 'main.php',
+        'wp-super-cache'                   => 'wp-cache.php',
 	);
 
 	public function __construct() {
@@ -120,6 +122,7 @@ class Plugin_Importer {
 	 */
 	public function run_plugins_install( $plugins_array ) {
 		$plugin_cleanup = array();
+
 		foreach ( $plugins_array as $plugin_slug => $path ) {
 			$this->logger->log( "Installing {$plugin_slug}.", 'progress' );
 			$download_path = '';
@@ -214,6 +217,11 @@ class Plugin_Importer {
 				),
 			)
 		);
+
+        // 没有找到插件说明不在wordpress.org目录中，不需要自动安装，手动安装就可以了
+        if(is_wp_error($api)){
+            return true;
+        }
 
 		if ( version_compare( PHP_VERSION, '5.6' ) === - 1 ) {
 			$skin = new Quiet_Skin_Legacy(
