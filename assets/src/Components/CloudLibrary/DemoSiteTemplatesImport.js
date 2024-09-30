@@ -154,12 +154,6 @@ const DemoSiteTemplatesImport = ( {
 								{ __( 'Import All Pages', 'templates-patterns-collection' ) }
 							</Button>
 						</>
-						<Button
-							href={ utmOutboundLink || tiobDash.upgradeURL }
-							isSecondary
-						>
-							{ __( 'Upgrade', 'templates-patterns-collection' ) }
-						</Button>
 					</div>
 				</div>
 			</div>
@@ -217,14 +211,6 @@ const DemoSiteTemplatesImport = ( {
 									{ __( 'Import Page', 'templates-patterns-collection' ) }
 								</Button>
 							</>
-							<Button
-								href={
-									utmOutboundLink || tiobDash.upgradeURL
-								}
-								isSecondary
-							>
-								{ __( 'Upgrade', 'templates-patterns-collection' ) }
-							</Button>
 						</>
 					}
 				/>

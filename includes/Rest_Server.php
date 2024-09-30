@@ -352,7 +352,7 @@ class Rest_Server {
 		}
 
 		if ( isset( $template['meta'] ) ) {
-			$meta = json_decode( $template['meta'], true );
+			$meta = $template['meta'];
 			if ( isset( $meta['_wp_page_template'] ) ) {
 				$page_template = $meta['_wp_page_template'];
 			}
