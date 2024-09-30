@@ -2,7 +2,7 @@ import { withSelect, withDispatch } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
+import { Button, TextControl } from '@wordpress/components';
 
 import VizSensor from 'react-visibility-sensor';
 import Fuse from 'fuse.js/dist/fuse.min';
@@ -25,6 +25,8 @@ const OnboardingContent = ( {
 	searchQuery,
 } ) => {
 	const { sites = {} } = getSites;
+	const [customSiteUrl, setCustomSiteUrl] = useState('');
+	const [customSite, setCustomSite] = useState(null);
 
 	const getAllSites = () => {
 		const finalData = {};
@@ -78,32 +80,68 @@ const OnboardingContent = ( {
 		return builderSites;
 	};
 
+	const handleCustomSiteSubmit = (e) => {
+		e.preventDefault();
+		if (customSiteUrl) {
+			setCustomSite({
+				title: "Custom Site",
+				url: customSiteUrl,
+				remote_url: customSiteUrl,
+				theme: "custom",
+				screenshot: "/path/to/default/screenshot.jpg",
+				keywords: ["custom"],
+				upsell: false,
+				has_templates: false,
+				slug: "custom-site",
+			});
+			setCustomSiteUrl('');
+		}
+	};
+
 	const Sites = () => {
 		const [ maxShown, setMaxShown ] = useState( 9 );
 		const allData = getFilteredSites();
-		return (
-			<div className="ob-sites is-grid">
-				{ allData.slice( 0, maxShown ).map( ( site, index ) => {
-					return <StarterSiteCard key={ index } data={ site } />;
-				} ) }
 
-				<VizSensor
-					onChange={ ( isVisible ) => {
-						if ( ! isVisible ) {
-							return false;
-						}
-						setMaxShown( maxShown + 9 );
-					} }
-				>
-					<span
-						style={ {
-							height: 10,
-							width: 10,
-							display: 'block',
-						} }
-					/>
-				</VizSensor>
-			</div>
+		const combinedSites = customSite ? [customSite, ...allData] : allData;
+
+		return (
+				<>
+
+					<form onSubmit={handleCustomSiteSubmit} className="custom-site-form">
+						<TextControl
+							label={__('Custom Site URL', 'templates-patterns-collection')}
+							value={customSiteUrl}
+							onChange={setCustomSiteUrl}
+							placeholder="https://example.com"
+						/>
+						<Button isPrimary type="submit">
+							{__('Add Custom Site', 'templates-patterns-collection')}
+						</Button>
+					</form>
+
+					<div className="ob-sites is-grid">
+						{ combinedSites.slice( 0, maxShown ).map( ( site, index ) => {
+							return <StarterSiteCard key={ index } data={ site } />;
+						} ) }
+
+						<VizSensor
+							onChange={ ( isVisible ) => {
+								if ( ! isVisible ) {
+									return false;
+								}
+								setMaxShown( maxShown + 9 );
+							} }
+						>
+							<span
+								style={ {
+									height: 10,
+									width: 10,
+									display: 'block',
+								} }
+							/>
+						</VizSensor>
+					</div>
+				</>
 		);
 	};
 
@@ -165,7 +203,7 @@ const OnboardingContent = ( {
 				filterBySearch={ filterBySearch }
 				filterByCategory={ filterByCategory }
 			/>
-			{ 0 === getFilteredSites().length && (
+			{ 0 === getFilteredSites().length && !customSite && (
 				<div className="no-results">
 					<p>
 						{ __(

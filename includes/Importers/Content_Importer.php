@@ -115,12 +115,14 @@ class Content_Importer {
 				$api_src          = defined( 'TPC_API_SRC' ) && ! empty( TPC_API_SRC ) ? TPC_API_SRC : Admin::API;
 				$content_file_url = str_replace( Admin::API, $api_src, $content_file_url );
 			}
+
 			$response_file = wp_remote_get( add_query_arg( 'key', apply_filters( 'product_neve_license_key', 'free' ), $content_file_url ), $request_args );
 
 			if ( is_wp_error( $response_file ) ) {
 				$this->logger->log( "Error saving the remote file:  {$response_file->get_error_message()}.", 'success' );
 			}
 			$content_file_path = $this->save_xhr_return_path( wp_remote_retrieve_body( $response_file ) );
+
 			$this->logger->log( "Saved remote XML at path {$content_file_path}.", 'success' );
 		} else {
 			$this->logger->log( 'Using local XML.', 'success' );
@@ -186,13 +188,33 @@ class Content_Importer {
 	 */
 	public function save_xhr_return_path( $content ) {
 		$wp_upload_dir = wp_upload_dir( null, false );
-		$file_path     = $wp_upload_dir['basedir'] . '/themeisle-demo-import.xml';
+
+		$zip_file_path     = $wp_upload_dir['basedir'] . '/themeisle-demo-import.zip';
+        $xml_file_path     = $wp_upload_dir['basedir'] . '/content.xml';
+
 		require_once( ABSPATH . '/wp-admin/includes/file.php' );
 		global $wp_filesystem;
 		WP_Filesystem();
-		$wp_filesystem->put_contents( $file_path, $content );
 
-		return $file_path;
+        // 检查内容是否为 XML
+        $is_xml = false;
+        if (substr($content, 0, 5) === "<?xml" || substr($content, 0, 3) === "<" && preg_match('/<(\w+)/', $content, $matches)) {
+            $is_xml = true;
+        }
+
+        if ($is_xml) {
+            // 如果是 XML，直接写入 content.xml
+            $wp_filesystem->put_contents( $xml_file_path, $content );
+            return $xml_file_path;
+        }else{
+            //添加ZIP内容到ZIP文件
+            $wp_filesystem->put_contents( $zip_file_path, $content );
+
+            // 解压下载的文件
+            unzip_file( $zip_file_path, $wp_upload_dir['basedir'] );
+        }
+
+		return $xml_file_path;
 	}
 
 	/**

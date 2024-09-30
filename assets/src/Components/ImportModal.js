@@ -52,7 +52,7 @@ const ImportModal = ( {
 		customizer: true,
 		widgets: true,
 		cleanup: false,
-		performanceAddon: true,
+		performanceAddon: false,
 		hyveLite: false,
 		theme_install: themeData !== false,
 	} );
@@ -227,82 +227,82 @@ const ImportModal = ( {
 					'templates-patterns-collection'
 				),
 			},
-			performanceAddon: {
-				title: __(
-					'Enable performance features for my site',
-					'templates-patterns-collection'
-				),
-				icon: 'dashboard',
-				tooltip: createInterpolateElement(
-					__(
-						sprintf(
-							// translators: %s is Optimole plugin name.
-							'Optimize and speed up your site with our trusted addon, <a><span>%s</span><icon/></a>. It’s free.',
-							'Optimole'
-						),
-						'templates-patterns-collection'
-					),
-					{
-						a: (
-							<a
-								href="https://wordpress.org/plugins/optimole-wp/"
-								target={ '_blank' }
-								style={ {
-									textDecoration: 'none',
-									display: 'inline-flex',
-									alignItems: 'center',
-								} }
-							/>
-						),
-						icon: (
-							<Icon
-								size={ 10 }
-								icon="external"
-								style={ { marginLeft: 0 } }
-							/>
-						),
-						span: <div />,
-					}
-				),
-			},
-			hyveLite: {
-				title: __( 'AI Chatbot', 'templates-patterns-collection' ),
-				icon: 'admin-comments',
-				tooltip: createInterpolateElement(
-					sprintf(
-						// translators: %s is Hyve plugin name.
-						__(
-							'Hyve is an AI-powered chatbot that transforms your WordPress content into engaging conversations. %sHyve%s',
-							'templates-patterns-collection'
-						),
-						'<a><span>',
-						'</span><icon/></a>'
-					),
-					{
-						a: (
-							// eslint-disable-next-line jsx-a11y/anchor-has-content
-							<a
-								href="https://wordpress.org/plugins/hyve-lite/"
-								target={ '_blank' }
-								rel="external noreferrer noopener"
-								style={ {
-									textDecoration: 'none',
-									display: 'inline-flex',
-									alignItems: 'center',
-								} }
-							/>
-						),
-						icon: (
-							<Icon
-								size={ 10 }
-								icon="external"
-								style={ { marginLeft: 0 } }
-							/>
-						),
-						span: <div />,
-					}
-				),
-			},
+			//performanceAddon: {
+			//	title: __(
+			//		'Enable performance features for my site',
+			//		'templates-patterns-collection'
+			//	),
+			//	icon: 'dashboard',
+			//	tooltip: createInterpolateElement(
+			//		__(
+			//			sprintf(
+			//				// translators: %s is Optimole plugin name.
+			//				'Optimize and speed up your site with our trusted addon, <a><span>%s</span><icon/></a>. It’s free.',
+			//				'Optimole'
+			//			),
+			//			'templates-patterns-collection'
+			//		),
+			//		{
+			//			a: (
+			//				<a
+			//					href="https://wordpress.org/plugins/optimole-wp/"
+			//					target={ '_blank' }
+			//					style={ {
+			//						textDecoration: 'none',
+			//						display: 'inline-flex',
+			//						alignItems: 'center',
+			//					} }
+			//				/>
+			//			),
+			//			icon: (
+			//				<Icon
+			//					size={ 10 }
+			//					icon="external"
+			//					style={ { marginLeft: 0 } }
+			//				/>
+			//			),
+			//			span: <div />,
+			//		}
+			//	),
+			//},
+			//hyveLite: {
+			//	title: __( 'AI Chatbot', 'templates-patterns-collection' ),
+			//	icon: 'admin-comments',
+			//	tooltip: createInterpolateElement(
+			//		sprintf(
+			//			// translators: %s is Hyve plugin name.
+			//			__(
+			//				'Hyve is an AI-powered chatbot that transforms your WordPress content into engaging conversations. %sHyve%s',
+			//				'templates-patterns-collection'
+			//			),
+			//			'<a><span>',
+			//			'</span><icon/></a>'
+			//		),
+			//		{
+			//			a: (
+			//				// eslint-disable-next-line jsx-a11y/anchor-has-content
+			//				<a
+			//					href="https://wordpress.org/plugins/hyve-lite/"
+			//					target={ '_blank' }
+			//					rel="external noreferrer noopener"
+			//					style={ {
+			//						textDecoration: 'none',
+			//						display: 'inline-flex',
+			//						alignItems: 'center',
+			//					} }
+			//				/>
+			//			),
+			//			icon: (
+			//				<Icon
+			//					size={ 10 }
+			//					icon="external"
+			//					style={ { marginLeft: 0 } }
+			//				/>
+			//			),
+			//			span: <div />,
+			//		}
+			//	),
+			//},
 		};
 
 		if ( isCleanupAllowed === 'yes' ) {
@@ -775,12 +775,12 @@ const ImportModal = ( {
 			case 'widgets':
 				setWidgetsProgress( 'error' );
 				break;
-			case 'performanceAddon':
-				setPerformanceAddonProgress( 'error' );
-				break;
-			case 'hyveLite':
-				setHyveLiteProgress( 'error' );
-				break;
+			//case 'performanceAddon':
+			//	setPerformanceAddonProgress( 'error' );
+			//	break;
+			//case 'hyveLite':
+			//	setHyveLiteProgress( 'error' );
+			//	break;
 		}
 		setError(
 			incomingError.data
@@ -962,8 +962,8 @@ const ImportModal = ( {
 											content: contentProgress,
 											customizer: customizerProgress,
 											widgets: widgetsProgress,
-											performanceAddon: performanceAddonProgress,
-											hyveLite: hyveLiteProgress,
+											//performanceAddon: performanceAddonProgress,
+											//hyveLite: hyveLiteProgress,
 										} }
 										currentStep={ currentStep }
 										willDo={ general }

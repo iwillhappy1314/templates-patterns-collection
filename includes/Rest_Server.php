@@ -182,6 +182,9 @@ class Rest_Server {
 	 * @return WP_REST_Response
 	 */
 	public function run_xml_importer( WP_REST_Request $request ) {
+        wp_raise_memory_limit();
+        set_time_limit(10 * MINUTE_IN_SECONDS);
+
 		$content_importer = new Content_Importer();
 		$import           = $content_importer->import_remote_xml( $request );
 		set_transient( 'ti_tpc_should_flush_permalinks', 'yes', 12 * HOUR_IN_SECONDS );

@@ -18,7 +18,7 @@ const StarterSiteCard = ( {
 		setSite();
 		handleNextStep();
 		const trackData = {
-			slug: 'neve',
+			slug: 'kadence',
 			license_id: tiobDash.license,
 			site: tiobDash.onboarding.homeUrl || '',
 			step_id: 2,
