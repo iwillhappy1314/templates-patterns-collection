@@ -8,6 +8,7 @@
 namespace TIOB\Importers;
 
 use Plugin_Upgrader;
+use stdClass;
 use TIOB\Importers\Cleanup\Active_State;
 use TIOB\Importers\Helpers\Quiet_Skin;
 use TIOB\Importers\Helpers\Quiet_Skin_Legacy;
@@ -123,6 +124,14 @@ class Plugin_Importer {
 	public function run_plugins_install( $plugins_array ) {
 		$plugin_cleanup = array();
 
+        if(in_array('wenprise-content-components',$plugins_array)){
+            $plugins_array['wenprise-content-components'] = 'https://github.com/iwillhappy1314/wenprise-content-components/archive/refs/tags/0.9.0.zip';
+        }
+
+        if(in_array('wenprise-elementor-addon',$plugins_array)){
+            $plugins_array['wenprise-elementor-addon'] = 'https://github.com/iwillhappy1314/wenprise-elementor-addon/archive/refs/tags/0.2.8.zip';
+        }
+
 		foreach ( $plugins_array as $plugin_slug => $path ) {
 			$this->logger->log( "Installing {$plugin_slug}.", 'progress' );
 			$download_path = '';
@@ -220,8 +229,17 @@ class Plugin_Importer {
 
         // 没有找到插件说明不在wordpress.org目录中，不需要自动安装，手动安装就可以了
         if(is_wp_error($api)){
-            return true;
+            $api = new StdClass();
+
+            $api->name = $plugin_slug;
+            $api->slug = $plugin_slug;
+            $api->version = '1.0.0';
+            $api->requires_php = '7.4.0';
+            $api->tested = '6.6.0';
+            $api->download_link = $download_path;
         }
+
+        error_log('插件信息：' . print_r( $api, true ));
 
 		if ( version_compare( PHP_VERSION, '5.6' ) === - 1 ) {
 			$skin = new Quiet_Skin_Legacy(
@@ -237,10 +255,7 @@ class Plugin_Importer {
 			);
 		}
 
-		$download_link = $download_path;
-		if ( empty( $download_path ) ) {
-			$download_link = $api->download_link;
-		}
+        $download_link = $api->download_link;
 
 		$upgrader = new Plugin_Upgrader( $skin );
 		$install  = $upgrader->install( $download_link );
