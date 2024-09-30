@@ -24,7 +24,7 @@ class Main {
 	 *
 	 * @var string API root string.
 	 */
-	const API_ROOT = 'ti-sites-lib/v1';
+	const API_ROOT = 'wenprise-site-export/v1';
 	/**
 	 * Storage for the remote fetched info.
 	 *
