@@ -54,6 +54,9 @@ class Theme_Mods_Importer {
 	 * @return WP_REST_Response
 	 */
 	public function import_theme_mods( WP_REST_Request $request ) {
+        ini_set( 'memory_limit', -1 );
+        ini_set( 'max_execution_time', -1 );
+
 		if ( ! current_user_can( 'customize' ) ) {
 			return new WP_REST_Response(
 				array(

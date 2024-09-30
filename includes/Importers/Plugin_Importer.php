@@ -124,14 +124,6 @@ class Plugin_Importer {
 	public function run_plugins_install( $plugins_array ) {
 		$plugin_cleanup = array();
 
-        if(in_array('wenprise-content-components',$plugins_array)){
-            $plugins_array['wenprise-content-components'] = 'https://github.com/iwillhappy1314/wenprise-content-components/archive/refs/tags/0.9.0.zip';
-        }
-
-        if(in_array('wenprise-elementor-addon',$plugins_array)){
-            $plugins_array['wenprise-elementor-addon'] = 'https://github.com/iwillhappy1314/wenprise-elementor-addon/archive/refs/tags/0.2.8.zip';
-        }
-
 		foreach ( $plugins_array as $plugin_slug => $path ) {
 			$this->logger->log( "Installing {$plugin_slug}.", 'progress' );
 			$download_path = '';
