@@ -398,7 +398,7 @@ class WP_Cli {
 	 * @return array
 	 */
 	private function get_starter_site_json( $site ) {
-		$request       = wp_remote_get( $site['url'] . 'wp-json/ti-demo-data/data' );
+		$request       = wp_remote_get( $site['url'] . 'wp-json/wenprise-site-export/data' );
 		$response_code = wp_remote_retrieve_response_code( $request );
 		if ( $response_code !== 200 || empty( $request['body'] ) || ! isset( $request['body'] ) ) {
 			\WP_CLI::warning( 'Cannot get site json data.' );

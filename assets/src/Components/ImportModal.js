@@ -93,7 +93,7 @@ const ImportModal = ( {
 		// Use the line below if testing in a staging env:
 		// const fetchAddress = siteData.url || siteData.remote_url;
 		const url = new URL(
-			`${ trailingSlashIt( fetchAddress ) }wp-json/ti-demo-data/data`
+			`${ trailingSlashIt( fetchAddress ) }wp-json/wenprise-site-export/data`
 		);
 		url.searchParams.append( 'license', license ? license.key : 'free' );
 		url.searchParams.append( 'theme', siteData.theme ? siteData.theme : 'kadence' );
