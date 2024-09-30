@@ -6,10 +6,17 @@ const trailingSlashIt = ( str ) => untrailingSlashIt( str ) + '/';
 
 const ONBOARDING_CAT = {
 	business: __( 'Business', 'templates-patterns-collection' ),
-	personal: __( 'Personal', 'templates-patterns-collection' ),
-	blog: __( 'Blogging', 'templates-patterns-collection' ),
 	portfolio: __( 'Portfolio', 'templates-patterns-collection' ),
 	woocommerce: __( 'E-Shop', 'templates-patterns-collection' ),
+	hospitality: __( 'Hospitality', 'templates-patterns-collection' ),
+	learning: __( 'Learning', 'templates-patterns-collection' ),
+	events: __( 'Events', 'templates-patterns-collection' ),
+	membership: __( 'Membership', 'templates-patterns-collection' ),
+	blog: __( 'Blog', 'templates-patterns-collection' ),
+	political: __( 'Political', 'templates-patterns-collection' ),
+	personal: __( 'Personal', 'templates-patterns-collection' ),
+	industry: __( 'Industry', 'templates-patterns-collection' ),
+	other: __( 'Other', 'templates-patterns-collection' ),
 };
 
 const EDITOR_MAP = {

@@ -7,6 +7,8 @@
 
 namespace TIOB;
 
+use function ReactWPScripts\is_development;
+
 /**
  * Class Sites_Listing
  */
@@ -109,6 +111,10 @@ class Sites_Listing {
 	private function get_sites() {
 		$cache = get_transient( $this->transient_key );
 
+        if(WP_DEBUG){
+            $cache = false;
+        }
+
 		if ( $cache !== false ) {
 			$response = $cache;
 		} else {
@@ -159,7 +165,9 @@ class Sites_Listing {
 			}
 		}
 
-		set_transient( $this->transient_key, $response, 12 * HOUR_IN_SECONDS );
+        if(!WP_DEBUG){
+            set_transient( $this->transient_key, $response, 12 * HOUR_IN_SECONDS );
+        }
 
 		return $response;
 	}

@@ -108,14 +108,9 @@ const StarterSiteCard = ( {
 			</div>
 			<div className="bottom">
 				<p className="title">{ title }</p>
-				{ upsell && (
-					<span className="pro-badge">
-						<Dashicon icon="lock" size={ 15 } />
-						<span>
-							{ __( 'Premium', 'templates-patterns-collection' ) }
-						</span>
-					</span>
-				) }
+				<Button isSecondary className="import" onClick={ launchImport }>
+					{ __( 'Import', 'templates-patterns-collection' ) }
+				</Button>
 			</div>
 		</div>
 	);
