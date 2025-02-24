@@ -463,7 +463,10 @@ class Admin {
 			'menu_title'  => __( 'My Library', 'templates-patterns-collection' ),
 			'capability'  => 'activate_plugins',
 			'menu_slug'   => $plugin_page,
-			'callback'    => $tpc_menu_page_data['callback'],
+			'callback'    => array(
+                $this,
+                'render_starter_sites',
+            ),
 		);
 
 		$settings_data = array(

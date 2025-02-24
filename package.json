@@ -18,7 +18,6 @@
   },
   "scripts": {
     "phpcs": "phpcs --standard=phpcs.xml",
-    "build:makepot": "docker run --user root --rm --volume \"$(pwd):/var/www/html/templates-patterns-collection\" wordpress:cli bash -c 'php -d memory_limit=512M \"$(which wp)\" i18n make-pot ./templates-patterns-collection/ ./templates-patterns-collection/languages/templates-patterns-collection.pot --allow-root '",
     "build:js": "wp-scripts build assets/src/app.js --output-path=assets/build",
     "build:onboarding": "wp-scripts build onboarding/src/index.js --output-path=onboarding/build",
     "build:editor": "wp-scripts build editor/src/index.js --output-path=editor/build",
