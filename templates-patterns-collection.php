@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:       Templates Patterns Collection
+ * Plugin Name:       Wenprise Templates Collection
  * Description:       This plugin is an add-on to Neve WordPress theme which offers access to Templates and Block Patterns library service to be used with the theme.
- * Version:           1.2.11
+ * Version:           10.2.11
  * Author:            ThemeIsle
  * Author URI:        https://themeisle.com
  * License:           GPLv3
