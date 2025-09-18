@@ -41,30 +41,30 @@
     "lint:onboarding": "wp-scripts lint-js ./onboarding/src/**/*.js"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/exec": "^5.0.0",
-    "@semantic-release/git": "^9.0.0",
-    "@wordpress/eslint-plugin": "^7.4.0",
-    "@wordpress/scripts": "^12.6.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@wordpress/eslint-plugin": "^22.17.0",
+    "@wordpress/scripts": "^30.24.0",
     "conventional-changelog-simple-preset": "^1.0.14",
-    "grunt": "^1.2.1",
-    "grunt-version": "^2.0.0",
+    "grunt": "^1.6.1",
+    "grunt-version": "^3.0.1",
     "grunt-wp-readme-to-markdown": "^2.0.1",
     "npm-run-all": "^4.1.5",
-    "replace-in-file": "^6.1.0",
-    "rtlcss": "^2.6.2",
-    "semantic-release": "^17.3.7",
-    "semantic-release-slack-bot": "^3.5.3",
-    "whatwg-fetch": "^3.4.1"
+    "replace-in-file": "^8.3.0",
+    "rtlcss": "^4.3.0",
+    "semantic-release": "^24.2.8",
+    "semantic-release-slack-bot": "^4.0.2",
+    "whatwg-fetch": "^3.6.20"
   },
   "dependencies": {
-    "@wordpress/icons": "^2.9.0",
-    "classnames": "^2.2.6",
-    "fuse.js": "^6.4.6",
-    "parse-entities": "^3.0.0",
-    "query-string": "^6.13.8",
-    "react-infinite-scroll-hook": "^3.0.0",
+    "@wordpress/icons": "^10.31.0",
+    "classnames": "^2.5.1",
+    "fuse.js": "^7.1.0",
+    "parse-entities": "^4.0.2",
+    "query-string": "^9.3.0",
+    "react-infinite-scroll-hook": "^6.0.1",
     "react-visibility-sensor": "^5.1.1",
-    "uuid": "^8.3.2"
+    "uuid": "^13.0.0"
   }
 }

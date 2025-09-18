@@ -15,21 +15,31 @@ const requestData = async (
 	method = 'POST',
 	useNonce = true
 ) => {
+	// 检查是否为外部请求
+	const isExternal = typeof route === 'string' ?
+		!route.startsWith(window.location.origin) :
+		!route.href.startsWith(window.location.origin);
+
 	const options = {
 		method,
 		headers: {
 			Accept: 'application/json',
-			'Content-Type': 'application/json',
 		},
 	};
 
-	if ( tiobDash.params.site_url ) {
+	// 只对内部请求或 POST 请求添加 Content-Type（避免触发 CORS 预检）
+	if (!isExternal || method === 'POST') {
+		options.headers['Content-Type'] = 'application/json';
+	}
+
+	if ( tiobDash.params.site_url && !isExternal ) {
 		const url = new URL( route );
 		url.searchParams.append( 'site_url', encodeURIComponent( tiobDash.params.site_url ) );
 		route = url;
 	}
 
-	if ( useNonce ) {
+	// 只对内部请求添加 nonce（避免触发 CORS 预检）
+	if ( useNonce && !isExternal ) {
 		options.headers[ 'x-wp-nonce' ] = tiobDash.nonce;
 	}
 

@@ -1,7 +1,7 @@
 /* global tiobDash, localStorage */
 import apiFetch from '@wordpress/api-fetch';
 
-import { stringifyUrl } from 'query-string';
+import queryString from 'query-string';
 import { v4 as uuidv4 } from 'uuid';
 import { models, loadPromise } from '@wordpress/api';
 import { cleanTemplateContent } from '../../../../shared/utils';
@@ -42,7 +42,7 @@ export const fetchLibrary = async (
 	// 	}
 	// }
 
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: tiobDash.endpoint + ( premade ? 'page-templates' : 'templates' ),
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -81,7 +81,7 @@ export const fetchLibrary = async (
 };
 
 export const updateTemplate = async ( id, name ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: tiobDash.endpoint + 'templates/' + id,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -107,7 +107,7 @@ export const updateTemplate = async ( id, name ) => {
 };
 
 export const duplicateTemplate = async ( id ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ tiobDash.endpoint }templates/${ id }/clone`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -131,7 +131,7 @@ export const duplicateTemplate = async ( id ) => {
 };
 
 export const deleteTemplate = async ( id ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ tiobDash.endpoint }templates/${ id }`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -153,7 +153,7 @@ export const deleteTemplate = async ( id ) => {
 };
 
 export const fetchBulkData = async ( templates ) => {
-	const url = stringifyUrl(
+	const url = queryString.stringifyUrl(
 		{
 			url: `${ tiobDash.endpoint }templates/bulk-import`,
 			query: {
@@ -200,7 +200,7 @@ export const fetchBulkData = async ( templates ) => {
 };
 
 export const getUserTemplateData = async ( template ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ tiobDash.endpoint }templates/${ template }/import`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),

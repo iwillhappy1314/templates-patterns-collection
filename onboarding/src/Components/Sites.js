@@ -3,7 +3,7 @@ import { withSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import StarterSiteCard from './StarterSiteCard';
 import VizSensor from 'react-visibility-sensor';
-import Fuse from 'fuse.js/dist/fuse.min';
+import Fuse from 'fuse.js';
 
 const Sites = ( { getSites, editor, category, searchQuery } ) => {
 	const [ maxShown, setMaxShown ] = useState( 9 );
@@ -51,7 +51,7 @@ const Sites = ( { getSites, editor, category, searchQuery } ) => {
 		}
 
 		if ( 'all' !== cat ) {
-			return items.filter( ( item ) => item.keywords.includes( cat ) );
+			return items.filter( ( item ) => item.keywords && item.keywords.includes( cat ) );
 		}
 
 		return items;

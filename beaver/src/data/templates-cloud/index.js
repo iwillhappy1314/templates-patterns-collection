@@ -1,5 +1,5 @@
 /* global localStorage, lodash, FLBuilder */
-import { stringifyUrl } from 'query-string';
+import queryString from 'query-string';
 import { v4 as uuidv4 } from 'uuid';
 
 import apiFetch from '@wordpress/api-fetch';
@@ -21,7 +21,7 @@ export const fetchTemplates = async ( additionalParams = {} ) => {
 		...filteredAdditionalParams,
 	};
 
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: window.tiTpc.endpoint + 'page-templates',
 		query: params,
 	} );
@@ -73,7 +73,7 @@ export const fetchLibrary = async ( additionalParams = {} ) => {
 		...filteredAdditionalParams,
 	};
 
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: window.tiTpc.endpoint + 'templates',
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -122,7 +122,7 @@ export const fetchLibrary = async ( additionalParams = {} ) => {
 };
 
 export const importTemplate = async ( template ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ window.tiTpc.endpoint }templates/${ template }/import`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -156,7 +156,7 @@ export const importTemplate = async ( template ) => {
 };
 
 export const updateTemplate = async ( params ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ window.tiTpc.endpoint }templates/${ params.template_id }`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -191,7 +191,7 @@ export const updateTemplate = async ( params ) => {
 };
 
 export const deleteTemplate = async ( template ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ window.tiTpc.endpoint }templates/${ template }`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),

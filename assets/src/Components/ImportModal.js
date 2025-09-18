@@ -92,8 +92,12 @@ const ImportModal = ( {
 		const fetchAddress = siteData.remote_url || siteData.url;
 		// Use the line below if testing in a staging env:
 		// const fetchAddress = siteData.url || siteData.remote_url;
+
+		// 确保使用 HTTPS 避免重定向导致的 CORS 预检失败
+		const httpsAddress = fetchAddress.replace(/^http:\/\//, 'https://');
+
 		const url = new URL(
-			`${ trailingSlashIt( fetchAddress ) }wp-json/wenprise-site-export/data`
+			`${ trailingSlashIt( httpsAddress ) }wp-json/wenprise-site-export/data`
 		);
 		url.searchParams.append( 'license', license ? license.key : 'free' );
 		url.searchParams.append( 'theme', siteData.theme ? siteData.theme : 'kadence' );

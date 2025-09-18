@@ -19,7 +19,7 @@ import {
 } from '@wordpress/edit-post';
 import { Fragment, useState, useEffect } from '@wordpress/element';
 
-import { stringifyUrl } from 'query-string';
+import queryString from 'query-string';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
 
@@ -191,7 +191,7 @@ const Exporter = () => {
 
 		const { meta, ...filteredParams } = window.tiTpc.params;
 
-		const url = stringifyUrl( {
+		const url = queryString.stringifyUrl( {
 			url: window.tiTpc.endpoint + 'templates',
 			query: {
 				...filteredParams,
@@ -277,7 +277,7 @@ const Exporter = () => {
             meta = { ...tiTpc.params.meta, postType: type };
 		}
 		if ( ! doesExist ) {
-			url = stringifyUrl( {
+			url = queryString.stringifyUrl( {
 				url: window.tiTpc.endpoint + 'templates',
 				query: {
 					...filteredParams,
@@ -290,7 +290,7 @@ const Exporter = () => {
 				},
 			} );
 		} else {
-			url = stringifyUrl( {
+			url = queryString.stringifyUrl( {
 				url: window.tiTpc.endpoint + 'templates/' + templateID,
 				query: {
 					...filteredParams,

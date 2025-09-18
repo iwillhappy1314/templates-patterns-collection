@@ -15,7 +15,7 @@ import { Fragment, useEffect, useState } from '@wordpress/element';
 import { store as coreStore } from '@wordpress/core-data';
 import api from '@wordpress/api';
 
-import { stringifyUrl } from 'query-string';
+import queryString from 'query-string';
 import { v4 as uuidv4 } from 'uuid';
 import { iconBlack } from '../icon';
 import TemplatePredefine from '../components/template-predefine';
@@ -131,7 +131,7 @@ const SiteEditorExporter = () => {
 		console.warn( { filteredParams } );
 		console.warn( { templateData } );
 		if ( ! templateData?._ti_tpc_template_id ) {
-			return stringifyUrl( {
+			return queryString.stringifyUrl( {
 				url: window.tiTpc.endpoint + 'templates',
 				query: {
 					...filteredParams,
@@ -148,7 +148,7 @@ const SiteEditorExporter = () => {
 			} );
 		}
 
-		return stringifyUrl( {
+		return queryString.stringifyUrl( {
 			url:
 				window.tiTpc.endpoint +
 				'templates/' +

@@ -1,6 +1,6 @@
 import { Dashicon } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { stringifyUrl } from 'query-string';
+import queryString from 'query-string';
 
 const PreviewFrame = ( {
 	title,
@@ -9,7 +9,7 @@ const PreviewFrame = ( {
 	heading,
 	previewUrl,
 } ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: previewUrl
 	} );
 

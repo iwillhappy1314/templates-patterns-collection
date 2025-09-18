@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* global localStorage, tiTpc */
-import { stringifyUrl } from 'query-string';
+import queryString from 'query-string';
 import { v4 as uuidv4 } from 'uuid';
 
 import apiFetch from '@wordpress/api-fetch';
@@ -33,7 +33,7 @@ export const fetchTemplates = async ( additionalParams = {} ) => {
 		params.type = [ 'gutenberg', 'fse' ];
 	}
 
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: tiTpc.endpoint + 'page-templates',
 		query: params,
 	}, { arrayFormat: 'bracket' } );
@@ -73,7 +73,7 @@ export const fetchLibrary = async ( additionalParams = {} ) => {
 		params.type = [ 'gutenberg', 'fse' ];
 	}
 
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: tiTpc.endpoint + 'templates',
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -109,7 +109,7 @@ export const fetchLibrary = async ( additionalParams = {} ) => {
 };
 
 export const updateTemplate = async ( params ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ tiTpc.endpoint }templates/${ params.template_id }`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -145,7 +145,7 @@ export const updateTemplate = async ( params ) => {
 };
 
 export const getTemplate = async ( template ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ window.tiTpc.endpoint }templates/${ template }`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -175,7 +175,7 @@ export const getTemplate = async ( template ) => {
 };
 
 export const importTemplate = async ( template ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ tiTpc.endpoint }templates/${ template }/import`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -209,7 +209,7 @@ export const importTemplate = async ( template ) => {
 };
 
 export const duplicateTemplate = async ( template ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ tiTpc.endpoint }templates/${ template }/clone`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -244,7 +244,7 @@ export const duplicateTemplate = async ( template ) => {
 };
 
 export const deleteTemplate = async ( template, sortingOrder ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ tiTpc.endpoint }templates/${ template }`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),
@@ -281,7 +281,7 @@ export const publishTemplate = async (
 	publishStatus,
 	link
 ) => {
-	const url = stringifyUrl( {
+	const url = queryString.stringifyUrl( {
 		url: `${ tiTpc.endpoint }templates/${ template }/publish`,
 		query: {
 			cache: localStorage.getItem( 'tpcCacheBuster' ),

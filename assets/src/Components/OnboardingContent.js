@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 import { Button, TextControl } from '@wordpress/components';
 
 import VizSensor from 'react-visibility-sensor';
-import Fuse from 'fuse.js/dist/fuse.min';
+import Fuse from 'fuse.js';
 
 import StarterSiteCard from './StarterSiteCard';
 import PreviewFrame from './PreviewFrame';
@@ -46,7 +46,7 @@ const OnboardingContent = ( {
 		}
 
 		if ( 'all' !== cat ) {
-			return items.filter( ( item ) => item.keywords.includes( cat ) );
+			return items.filter( ( item ) => item.keywords && item.keywords.includes( cat ) );
 		}
 
 		return items;

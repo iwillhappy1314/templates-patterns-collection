@@ -1,6 +1,10 @@
 # Browsers that we support
 
-last 1 version
+last 2 versions
 > 1%
-maintained node versions
 not dead
+not ie 11
+chrome >= 60
+firefox >= 60
+safari >= 12
+edge >= 79
