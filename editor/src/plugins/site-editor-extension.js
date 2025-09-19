@@ -100,6 +100,7 @@ const SiteEditorExporter = () => {
 				method: 'POST',
 				data,
 				parse: false,
+				credentials: 'omit',
 			} );
 
 			if ( ! response.ok ) {

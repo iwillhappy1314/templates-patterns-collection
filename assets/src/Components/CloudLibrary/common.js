@@ -57,6 +57,7 @@ export const fetchLibrary = async (
 			url,
 			method: 'GET',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -95,6 +96,7 @@ export const updateTemplate = async ( id, name ) => {
 		await apiFetch( {
 			url,
 			method: 'POST',
+			credentials: 'omit',
 		} );
 		localStorage.setItem( 'tpcCacheBuster', uuidv4() );
 
@@ -119,6 +121,7 @@ export const duplicateTemplate = async ( id ) => {
 		await apiFetch( {
 			url,
 			method: 'POST',
+			credentials: 'omit',
 		} );
 		localStorage.setItem( 'tpcCacheBuster', uuidv4() );
 
@@ -141,7 +144,7 @@ export const deleteTemplate = async ( id ) => {
 	} );
 
 	try {
-		await apiFetch( { url, method: 'POST' } );
+		await apiFetch( { url, method: 'POST', credentials: 'omit' } );
 		localStorage.setItem( 'tpcCacheBuster', uuidv4() );
 
 		return { success: true };
@@ -167,7 +170,7 @@ export const fetchBulkData = async ( templates ) => {
 	);
 
 	try {
-		const response = await apiFetch( { url, method: 'GET', parse: false } );
+		const response = await apiFetch( { url, method: 'GET', parse: false, credentials: 'omit' } );
 
 		if ( response.ok ) {
 			if ( response.message ) {
@@ -215,6 +218,7 @@ export const getUserTemplateData = async ( template ) => {
 			url,
 			method: 'GET',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {

@@ -43,6 +43,7 @@ export const fetchTemplates = async ( additionalParams = {} ) => {
 			url,
 			method: 'GET',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -87,6 +88,7 @@ export const fetchLibrary = async ( additionalParams = {} ) => {
 			url,
 			method: 'GET',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -124,6 +126,7 @@ export const updateTemplate = async ( params ) => {
 			url,
 			method: 'POST',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -158,6 +161,7 @@ export const getTemplate = async ( template ) => {
 			url,
 			method: 'GET',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -190,6 +194,7 @@ export const importTemplate = async ( template ) => {
 			url,
 			method: 'GET',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -222,6 +227,7 @@ export const duplicateTemplate = async ( template ) => {
 			url,
 			method: 'POST',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -254,7 +260,7 @@ export const deleteTemplate = async ( template, sortingOrder ) => {
 	} );
 
 	try {
-		const response = await apiFetch( { url, method: 'POST' } );
+		const response = await apiFetch( { url, method: 'POST', credentials: 'omit' } );
 
 		if ( response.ok ) {
 			const content = await response.json();
@@ -298,6 +304,7 @@ export const publishTemplate = async (
 		const response = await apiFetch( {
 			url,
 			method: 'POST',
+			credentials: 'omit',
 			headers: {
 				Authorization: `Bearer  ${ tiTpc.bearer || '' } `,
 			},

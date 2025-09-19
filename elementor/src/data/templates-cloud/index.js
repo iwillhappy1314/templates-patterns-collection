@@ -32,6 +32,7 @@ export const fetchTemplates = async ( additionalParams = {} ) => {
 			url,
 			method: 'GET',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -87,6 +88,7 @@ export const fetchLibrary = async ( additionalParams = {} ) => {
 			url,
 			method: 'GET',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -135,6 +137,7 @@ export const getTemplate = async ( template ) => {
 			url,
 			method: 'GET',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -175,6 +178,7 @@ export const importTemplate = async ( template ) => {
 			url,
 			method: 'GET',
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -211,7 +215,7 @@ export const duplicateTemplate = async ( id ) => {
 	} );
 
 	try {
-		const response = await apiFetch( { url, method: 'POST' } );
+		const response = await apiFetch( { url, method: 'POST', credentials: 'omit' } );
 
 		if ( response.ok ) {
 			const content = await response.json();
@@ -264,7 +268,7 @@ export const updateTemplate = async ( params ) => {
 			obj.data = data;
 		}
 
-		const response = await apiFetch( { ...obj } );
+		const response = await apiFetch( { ...obj, credentials: 'omit' } );
 
 		if ( response.ok ) {
 			const content = await response.json();
@@ -296,7 +300,7 @@ export const deleteTemplate = async ( template ) => {
 	} );
 
 	try {
-		const response = await apiFetch( { url, method: 'POST' } );
+		const response = await apiFetch( { url, method: 'POST', credentials: 'omit' } );
 
 		if ( response.ok ) {
 			const content = await response.json();
@@ -357,6 +361,7 @@ export const exportTemplate = async ( {
 			method: 'POST',
 			data,
 			parse: false,
+			credentials: 'omit',
 		} );
 
 		if ( response.ok ) {
@@ -398,6 +403,7 @@ export const publishTemplate = async ( params ) => {
 			headers: {
 				Authorization: `Bearer  ${ window.tiTpc.bearer || '' } `,
 			},
+			credentials: 'omit',
 		} );
 		if ( response.ok ) {
 			const content = await response.json();

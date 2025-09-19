@@ -206,6 +206,7 @@ const Exporter = () => {
 				method: 'POST',
 				data,
 				parse: false,
+				credentials: 'omit',
 			} );
 
 			if ( response.ok ) {
@@ -307,6 +308,7 @@ const Exporter = () => {
 				method: 'POST',
 				data,
 				parse: false,
+				credentials: 'omit',
 			} );
 
 			if ( response.ok ) {
