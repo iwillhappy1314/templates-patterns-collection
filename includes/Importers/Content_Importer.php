@@ -149,6 +149,9 @@ class Content_Importer {
 
 		do_action( 'themeisle_ob_after_xml_import' );
 
+		$this->logger->log( 'Removing default posts', 'progress' );
+		$this->remove_default_posts();
+
 		$this->logger->log( 'Busting elementor cache', 'progress' );
 		$this->maybe_bust_elementor_cache();
 
@@ -353,6 +356,49 @@ class Content_Importer {
 		$importer  = new WP_Import( $builder );
 
 		return $importer->import( $file_path );
+	}
+
+	/**
+	 * Remove default WordPress posts and comments.
+	 */
+	private function remove_default_posts() {
+		// Remove default "Hello world!" post
+		$hello_world_post = get_page_by_title( 'Hello world!', OBJECT, 'post' );
+		if ( $hello_world_post ) {
+			wp_delete_post( $hello_world_post->ID, true );
+			$this->logger->log( 'Removed default "Hello world!" post', 'success' );
+		}
+
+		// Also try to find it by slug in case title is localized
+		$hello_world_post_by_slug = get_posts( array(
+			'name'        => 'hello-world',
+			'post_type'   => 'post',
+			'post_status' => 'publish',
+			'numberposts' => 1
+		) );
+
+		if ( ! empty( $hello_world_post_by_slug ) ) {
+			wp_delete_post( $hello_world_post_by_slug[0]->ID, true );
+			$this->logger->log( 'Removed default post by slug "hello-world"', 'success' );
+		}
+
+		// Remove default sample page
+		$sample_page = get_page_by_title( 'Sample Page' );
+		if ( $sample_page ) {
+			wp_delete_post( $sample_page->ID, true );
+			$this->logger->log( 'Removed default "Sample Page"', 'success' );
+		}
+
+		// Remove default comments
+		$default_comments = get_comments( array(
+			'post_id' => 1, // Default post ID is usually 1
+			'status'  => 'approve'
+		) );
+
+		foreach ( $default_comments as $comment ) {
+			wp_delete_comment( $comment->comment_ID, true );
+			$this->logger->log( 'Removed default comment', 'success' );
+		}
 	}
 
 	/**
